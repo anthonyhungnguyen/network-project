@@ -2,7 +2,7 @@
 
 from typing import Any, Dict, Union
 
-from . import config, gemini_client
+from . import client, config
 
 
 def generate_response(prompt: str, **kwargs: Union[str, float, int]) -> str:
@@ -31,7 +31,7 @@ def generate_response(prompt: str, **kwargs: Union[str, float, int]) -> str:
             configs[key] = value
 
     # Get response from Gemini
-    return gemini_client.get_gemini_response(prompt, configs)
+    return client.get_gemini_response(prompt, configs)
 
 
 __all__ = ["generate_response"]

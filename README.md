@@ -1,3 +1,17 @@
+# Purpose
+
+This project explores the application of large language models in password security research. It uses Gemma, a powerful language model, to:
+
+1. Generate realistic password variations based on existing password datasets
+2. Predict and analyze password patterns to understand common user tendencies
+3. Evaluate password security by identifying predictable patterns
+
+The insights gained from this project can help:
+- Improve password security policies
+- Develop better password strength metrics
+- Understand how attackers might exploit password patterns
+- Create more effective password generation guidelines
+
 # Getting Started
 
 ## Prerequisites
@@ -17,11 +31,11 @@
 1. Clone this repository
 2. Install dependencies:
    ```bash
-   uv pip install -r requirements.txt
+   uv pip install -r pyproject.toml
    ```
 3. Run the main script:
    ```bash
-   uv python main.py
+   uv run python main.py
    ```
 
 # Datasets
