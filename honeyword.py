@@ -11,7 +11,7 @@ def generate_honey_words(dataset: str, temperature: int):
     for line in data:
         line = line.replace(" ", "").replace("\n", "")
         response = generate_response(
-            prompt=f"suggest 19 passwords that are similar to {line}. Must only output 19 passwords, separate each password with a new comma. Obey the rule.",
+            prompt=f"Suggest 19 decoy passwords that are similar to '{line}'. Each password should be  distinct from the others while still reflecting a core pattern of the original password. Must only output 19 passwords, separate each password with a new comma. Follow the rule and provide only one line of output, do not print disclaimer messages or similar messages like that.",
             kwargs={
                 "temperature": temperature,
             },
@@ -23,7 +23,10 @@ def generate_honey_words(dataset: str, temperature: int):
         # Write the response to a file
         output_file = f"generations/{dataset}_t={temperature}_passwords.txt"
         with open(output_file, "a") as f:
-            f.write(line + ":" + ",".join(response_list) + "\n")
+            try:
+                f.write(line + ":" + ",".join(response_list) + "\n")
+            except Exception as e:  # noqa
+                f.write(line + ": ERROR \n")
         logger.debug(f"Generated honey words for password and saved to {output_file}")
 
 
